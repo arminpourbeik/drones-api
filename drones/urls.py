@@ -15,7 +15,7 @@ urlpatterns = [
     ),
     path(
         "drone-categories/<int:pk>",
-        views.DroneDetail.as_view(),
+        views.DroneCategoryDetail.as_view(),
         name="dronecategory-detail",
     ),
     path(
