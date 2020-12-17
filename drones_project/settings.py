@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # 3rd party
     "rest_framework",
+    "rest_framework.authtoken",
+    "django_filters",
     # Local
     "drones.apps.DronesConfig",
 ]
@@ -114,3 +116,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
+
+# REST Framework settings
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "drones.custompagination.LimitOffsetPaginationWithUpperBound",
+    "PAGE_SIZE": 4,
+    "DEFAULT_FILTER_BACKENDS": (
+        "django_filters.rest_framework.DjangoFilterBackend",
+        "rest_framework.filters.OrderingFilter",
+        "rest_framework.filters.SearchFilter",
+    ),
+}
