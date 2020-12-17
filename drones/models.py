@@ -66,3 +66,6 @@ class Competition(models.Model):
 
     class Meta:
         ordering = ("-distance_in_feet",)
+
+    def __str__(self):
+        return f"Competition by {self.pilot.name} with {self.drone.name}"
