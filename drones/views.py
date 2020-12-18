@@ -4,6 +4,7 @@ from rest_framework.reverse import reverse
 from rest_framework import permissions
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.throttling import ScopedRateThrottle
 
 from django_filters import rest_framework as filters
 from django_filters import AllValuesFilter, DateTimeFilter, NumberFilter
@@ -42,6 +43,8 @@ class DroneList(generics.ListCreateAPIView):
     )
 
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    throttle_classes = (ScopedRateThrottle,)
+    throttle_scope = "drones"
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -54,6 +57,8 @@ class DroneDetail(generics.RetrieveUpdateDestroyAPIView):
         permissions.IsAuthenticatedOrReadOnly,
         custompermissions.IsCurrentUserOwnerOrReadOnly,
     )
+    throttle_classes = (ScopedRateThrottle,)
+    throtttle_scope = "drones"
 
 
 class PilotList(generics.ListCreateAPIView):
@@ -71,6 +76,8 @@ class PilotList(generics.ListCreateAPIView):
         "name",
         "races_count",
     )
+    throttle_classes = (ScopedRateThrottle,)
+    throttle_scope = "pilots"
 
 
 class PilotDetail(generics.ListCreateAPIView):
@@ -78,6 +85,8 @@ class PilotDetail(generics.ListCreateAPIView):
     serializer_class = serializers.PilotSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
+    throttle_classes = (ScopedRateThrottle,)
+    throttle_scope = "pilots"
 
 
 class CompetitionFilter(filters.FilterSet):
