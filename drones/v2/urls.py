@@ -1,32 +1,33 @@
 from django.urls import path
 
 from drones import views
+from drones.v2 import views as views_v2
 
-app_name = "v1"
+app_name = "v2"
 
 urlpatterns = [
     path(
         "",
-        views.ApiRoot.as_view(),
+        views_v2.ApiRootVersion2.as_view(),
         name="ApiRoot",
     ),
     path(
-        "drone-categories/",
+        "vehicle-categories/",
         views.DroneCategoryList.as_view(),
         name="dronecategory-list",
     ),
     path(
-        "drone-categories/<int:pk>",
+        "vehicle-categories/<int:pk>",
         views.DroneCategoryDetail.as_view(),
         name="dronecategory-detail",
     ),
     path(
-        "drones/",
+        "vehicle/",
         views.DroneList.as_view(),
         name="drone-list",
     ),
     path(
-        "drones/<int:pk>",
+        "vehicle/<int:pk>",
         views.DroneDetail.as_view(),
         name="drone-detail",
     ),
