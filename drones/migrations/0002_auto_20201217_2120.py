@@ -6,27 +6,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('drones', '0001_initial'),
+        ("drones", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='dronecategory',
-            options={'ordering': ('name',), 'verbose_name_plural': 'Drone Categories'},
+            name="dronecategory",
+            options={"ordering": ("name",), "verbose_name_plural": "Drone Categories"},
         ),
         migrations.AlterField(
-            model_name='drone',
-            name='name',
+            model_name="drone",
+            name="name",
             field=models.CharField(max_length=250, unique=True),
         ),
         migrations.AlterField(
-            model_name='dronecategory',
-            name='name',
+            model_name="dronecategory",
+            name="name",
             field=models.CharField(max_length=200, unique=True),
         ),
         migrations.AlterField(
-            model_name='pilot',
-            name='name',
+            model_name="pilot",
+            name="name",
             field=models.CharField(max_length=250, unique=True),
         ),
     ]
