@@ -147,7 +147,7 @@ class PilotTests(APITestCase):
         authorized_get_response = self.client.get(url, format="json")
         assert authorized_get_response.status_code == status.HTTP_200_OK
         print(authorized_get_response.data)
-        assert authorized_get_response.data.get('name') == new_pilot_name
+        assert authorized_get_response.data.get("name") == new_pilot_name
 
         # Clean up credentials
         self.client.credentials()
@@ -160,10 +160,12 @@ class PilotTests(APITestCase):
         Ensure we cannot create a pilot without a token
         """
 
-        new_pilot_name = 'Unauthorized pilot'
+        new_pilot_name = "Unauthorized pilot"
         new_pilot_gender = Pilot.FEMALE
         new_pilot_races_count = 5
-        response = self.post_pilot(new_pilot_name, new_pilot_gender, new_pilot_races_count)
+        response = self.post_pilot(
+            new_pilot_name, new_pilot_gender, new_pilot_races_count
+        )
         print(response)
         print(Pilot.objects.count())
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
