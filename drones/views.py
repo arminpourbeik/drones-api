@@ -80,7 +80,7 @@ class PilotList(generics.ListCreateAPIView):
     throttle_scope = "pilots"
 
 
-class PilotDetail(generics.ListCreateAPIView):
+class PilotDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Pilot.objects.all()
     serializer_class = serializers.PilotSerializer
     authentication_classes = (TokenAuthentication,)
