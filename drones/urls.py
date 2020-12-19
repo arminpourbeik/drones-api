@@ -2,7 +2,6 @@ from django.urls import path
 
 from drones import views
 
-app_name = "v1"
 
 urlpatterns = [
     path(

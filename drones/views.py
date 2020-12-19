@@ -17,7 +17,7 @@ from drones import custompermissions
 class DroneCategoryList(generics.ListCreateAPIView):
     queryset = models.DroneCategory.objects.all()
     serializer_class = serializers.DroneCategorySerializer
-    filter_fields = ("name",)
+    filterset_fields = ("name",)
     search_fields = ("^name",)
     ordering_fields = ("name",)
 
@@ -30,7 +30,7 @@ class DroneCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
 class DroneList(generics.ListCreateAPIView):
     queryset = models.Drone.objects.all()
     serializer_class = serializers.DroneSerializer
-    filter_fields = (
+    filterset_fields = (
         "name",
         "drone_category",
         "manufacturing_date",
@@ -66,7 +66,7 @@ class PilotList(generics.ListCreateAPIView):
     serializer_class = serializers.PilotSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
-    filter_fields = (
+    filterset_fields = (
         "name",
         "gender",
         "races_count",
