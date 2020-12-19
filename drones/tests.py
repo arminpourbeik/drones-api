@@ -3,7 +3,6 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 from rest_framework import response, status
-from rest_framework.settings import perform_import
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 
@@ -20,7 +19,7 @@ class DroneCategoryTests(APITestCase):
 
     def test_post_and_get_drone_category(self):
         """
-        Ensure we can create a new Drone Category and then retrive it
+        Ensure we can create a new Drone Category and then retrieve it
         """
 
         new_drone_category_name = "Hexacopter"
